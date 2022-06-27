@@ -1,6 +1,6 @@
 # SpecFlowProject
 
-Specflow.Common,
-Specflow.UI,
-Specflow.REST,
-Specflow.DB
+SpecFlow.Common,
+SpecFlow.UI,
+SpecFlow.REST,
+SpecFlow.DB
