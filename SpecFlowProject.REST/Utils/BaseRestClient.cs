@@ -1,0 +1,54 @@
+﻿using SpecFlowProject.Common.Configurations;
+using SpecFlowProject.REST.Models;
+using RestSharp;
+using System.Collections.Generic;
+
+namespace SpecFlowProject.REST.Utils
+{
+    internal class BaseRestClient
+    {
+        RestClient _restClient;
+        RestRequest _request;
+        public BaseRestClient()
+        {
+            _restClient = new RestClient(ConfigurationProvider.GetValue[ConfigurationLabels.BaseApiUrl]);
+        }
+
+        public RestResponse<List<User>> GetAllUsers()
+        {
+            _request = new RestRequest(ConfigurationProvider.GetValue[ConfigurationLabels.UsersEndPoint], Method.Get);
+
+            return _restClient.ExecuteAsync<List<User>>(_request).Result;
+        }
+
+        public RestResponse<User> GetSingleUser(int id)
+        {
+            _request = new RestRequest($"{ConfigurationProvider.GetValue[ConfigurationLabels.UsersEndPoint]}/{id}", Method.Get);
+
+            return _restClient.ExecuteAsync<User>(_request).Result;
+        }
+
+        public RestResponse<User> PostSingleUser(User user)
+        {
+            _request = new RestRequest(ConfigurationProvider.GetValue[ConfigurationLabels.UsersEndPoint], Method.Post)
+                .AddJsonBody(user);
+
+            return _restClient.ExecuteAsync<User>(_request).Result;
+        }
+
+        public RestResponse<User> UpdateSingleUser(int id, User user)
+        {
+            _request = new RestRequest($"{ConfigurationProvider.GetValue[ConfigurationLabels.UsersEndPoint]}/{id}", Method.Put)
+                .AddJsonBody(user);
+
+            return _restClient.ExecuteAsync<User>(_request).Result;
+        }
+
+        public RestResponse<User> DeleteSingleUser(int id)
+        {
+            _request = new RestRequest($"{ConfigurationProvider.GetValue[ConfigurationLabels.UsersEndPoint]}/{id}", Method.Delete);
+
+            return _restClient.ExecuteAsync<User>(_request).Result;
+        }
+    }
+}
