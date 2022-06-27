@@ -7,7 +7,6 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
-using SpecFlowProject.Common.Configurations;
 
 namespace SpecFlowProject.DB.StepDefinitions
 {

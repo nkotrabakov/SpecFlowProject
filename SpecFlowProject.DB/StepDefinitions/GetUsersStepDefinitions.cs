@@ -1,5 +1,4 @@
 using SpecFlowProject.DB.DataContext;
-using SpecFlowProject.Common.Configurations;
 using SpecFlowProject.DB.Models;
 using NUnit.Framework;
 using System.Collections.Generic;
